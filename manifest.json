@@ -1,0 +1,9 @@
+{
+  "name": "5分筋トレクエスト",
+  "short_name": "筋トレクエスト",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f8f6ff",
+  "theme_color": "#7867d8",
+  "icons": []
+}

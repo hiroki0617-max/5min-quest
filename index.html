@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7867d8">
+<meta name="description" content="友達と毎日5分筋トレ。ポイント、ガチャ、実績を一緒に楽しむ30日クエスト。">
+<link rel="manifest" href="./manifest.json">
+<title>5分筋トレクエスト</title>
+<style>
+:root{--ink:#292640;--muted:#77748e;--purple:#7867d8;--lav:#eeeaff;--pink:#ffe7ef;--mint:#e2f8ef;--line:#e9e5f5;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#f8f6ff,#fff7fa 60%,#f4fffa);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:var(--ink);padding-bottom:env(safe-area-inset-bottom)}
+.wrap{max-width:760px;margin:auto;padding:18px 13px 44px}.hero{padding:23px 20px;border-radius:25px;background:linear-gradient(135deg,#7867d8,#a394f2);color:#fff;box-shadow:0 12px 30px #7564d82b}
+.kicker{font-size:11px;letter-spacing:.12em;opacity:.85;font-weight:800}.hero h1{font-size:clamp(28px,7vw,39px);line-height:1.13;margin:10px 0}.hero p{margin:0;opacity:.92;line-height:1.65}.pill{display:inline-block;background:#ffffff2e;border:1px solid #ffffff5c;border-radius:99px;padding:6px 10px;font-size:11px;margin:13px 4px 0 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:13px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:15px;box-shadow:0 5px 18px #40347708}.wide{grid-column:1/-1}.label{font-size:12px;color:var(--muted);font-weight:700}.big{font-size:27px;font-weight:850;margin:5px 0}.sub{font-size:12px;color:var(--muted);line-height:1.6}.section-title{font-size:17px;margin:4px 0 12px}.btn{border:0;border-radius:13px;padding:12px 13px;font-weight:750;cursor:pointer;background:var(--purple);color:white;font-size:14px;min-height:44px}.btn.secondary{background:var(--lav);color:#5b4db6}.btn.ghost{background:#f7f6fb;color:var(--ink);border:1px solid var(--line)}.btn:disabled{opacity:.4;cursor:not-allowed}.full{width:100%}.row{display:flex;align-items:center;justify-content:space-between;gap:8px}.progress{height:9px;background:#eeeaf8;border-radius:99px;overflow:hidden;margin:10px 0}.progress span{height:100%;display:block;background:linear-gradient(90deg,#8b7be9,#f1a6c5);border-radius:99px}.people{display:grid;grid-template-columns:1fr 1fr;gap:9px}.person{background:#faf9ff;border-radius:14px;padding:11px}.person input[type=text]{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin-top:7px;font-size:16px;min-width:0}.check{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px}.check input{width:21px;height:21px;accent-color:var(--purple)}.tag{font-size:11px;background:var(--mint);padding:5px 8px;border-radius:99px;color:#28745a;display:inline-block}.small{font-size:11px;line-height:1.6;color:var(--muted)}.toast{margin-top:10px;color:#4f439f;font-size:13px;font-weight:700;min-height:20px}.reward{display:flex;gap:11px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}.emoji{font-size:24px;background:var(--lav);border-radius:13px;padding:9px}.log{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}.muted{color:var(--muted)}.status{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:6px 9px;border-radius:99px;background:#f3f0ff;color:#5b4db6}.status:before{content:"";width:7px;height:7px;border-radius:50%;background:#a8a0c7}.status.ok{background:#e2f8ef;color:#28745a}.status.ok:before{background:#31a879}.status.bad{background:#fff0f0;color:#a43e3e}.sharebox{background:#f9f7ff;border:1px dashed #c9c0f4;border-radius:14px;padding:12px}.daybutton{padding:9px 2px!important;font-size:12px!important;min-height:43px!important}.note{background:#fff9e8;border-radius:12px;padding:11px;font-size:12px;line-height:1.6;color:#765d25}
+@media(max-width:390px){.wrap{padding:12px 9px 35px}.hero{padding:20px 16px}.card{padding:12px}.grid{gap:8px}.big{font-size:24px}.people{grid-template-columns:1fr}.row.actions{flex-wrap:wrap}.row.actions .btn:first-child{flex:1 0 100%}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero">
+<div class="kicker">DAILY 5-MINUTE QUEST</div><h1>5分筋トレ<br>クエスト ✦</h1>
+<p>今日の5分が、明日の自信になる。<br>2人でゆるく、楽しく、30日チャレンジ！</p>
+<span class="pill">🎮 協力型RPG</span><span class="pill">🎁 7日＆30日ご褒美</span><span class="pill">💜 休んでも再開OK</span>
+</header>
+<section class="grid">
+<div class="card"><div class="label">チーム合計</div><div class="big"><span id="teamCount">0</span><span class="muted" style="font-size:14px"> / 60回</span></div><div class="progress"><span id="teamBar" style="width:0%"></span></div><div class="sub">2人の達成回数を合算</div></div>
+<div class="card"><div class="label">今日のクエスト</div><div class="big">5分 💪</div><div class="sub">筋トレしたらチェック！</div><div class="toast" id="todayStatus"></div></div>
+<div class="card wide">
+<div class="row"><h2 class="section-title">🔗 2人の共有ルーム</h2><span class="status" id="syncStatus">接続準備中</span></div>
+<div class="sub" id="roomText">このアプリの公開URLとFirebase設定後、ルームリンクで記録を同期できます。</div>
+<div class="sharebox" style="margin-top:10px"><div class="label">共有リンク</div><div id="shareUrl" style="font-size:12px;word-break:break-all;margin:6px 0">公開後に表示されます</div><div class="row"><button class="btn secondary" id="copyLink">リンクをコピー</button><button class="btn ghost" id="shareNative">共有</button></div></div>
+<div class="small" style="margin-top:8px">同じ共有リンクを2人で開くと、同じルームの記録を共有します。同期には公開設定とFirebase設定が必要です。</div>
+</div>
+<div class="card wide">
+<div class="row"><h2 class="section-title">🧑‍🤝‍🧑 今日のログイン</h2><span class="tag" id="dayLabel">1日目</span></div>
+<div class="people">
+<div class="person"><div class="label">プレイヤー 1</div><input type="text" id="name1" placeholder="名前（任意）" maxlength="20"><label class="check"><input type="checkbox" id="done1"> 5分達成！</label><div class="sub">累計 <b id="count1">0</b>/30日</div></div>
+<div class="person"><div class="label">プレイヤー 2</div><input type="text" id="name2" placeholder="名前（任意）" maxlength="20"><label class="check"><input type="checkbox" id="done2"> 5分達成！</label><div class="sub">累計 <b id="count2">0</b>/30日</div></div>
+</div>
+<div class="row actions" style="margin-top:13px"><button class="btn full" id="saveDay">今日の記録を保存</button><button class="btn ghost" id="prevDay">◀</button><button class="btn ghost" id="nextDay">▶</button></div>
+<div class="sub" style="margin-top:9px">日付はチャレンジ開始日からの何日目かを選択します。休んでもポイントは消えず、翌日から再開できます。</div>
+</div>
+<div class="card"><div class="label">プレイヤー1のポイント</div><div class="big" id="points1">0 pt</div><div class="sub">達成＋連続ボーナス</div></div>
+<div class="card"><div class="label">プレイヤー2のポイント</div><div class="big" id="points2">0 pt</div><div class="sub">達成＋連続ボーナス</div></div>
+<div class="card wide"><h2 class="section-title">🎲 デイリーガチャ</h2><p class="sub">選択中の日に1人以上が達成していれば引けます。無料特典多めのご褒美くじ。</p><button class="btn full" id="gacha">ガチャを引く ✨</button><div class="toast" id="prize"></div><div id="prizeHistory"></div><div class="small">実際の購入・支払いは発生しません。賞品は月の予算内で楽しもう。</div></div>
+<div class="card wide"><h2 class="section-title">🏆 実績バッジ</h2><div id="badges"></div></div>
+<div class="card wide"><h2 class="section-title">🎁 ご褒美プラン</h2>
+<div class="reward"><div class="emoji">☕</div><div><b>7日目：ウィークリーボーナス</b><div class="sub">1人800円まで。ドリンク＋スイーツなど。2人とも7日間のうち6日以上達成で解放。</div><div id="weeklyStatus" class="toast"></div></div></div>
+<div class="reward"><div class="emoji">🍽️</div><div><b>30日目：マンスリーボーナス</b><div class="sub">1人3,000円まで。ちょっといいご飯、カフェ＋映画、お出かけなど。2人とも累計24日以上達成で解放。</div><div id="monthlyStatus" class="toast"></div></div></div>
+<div class="reward"><div class="emoji">🎁</div><div><b>ガチャ予算</b><div class="sub">1人あたり月1,000円まで。無料特典も混ぜて予算内で楽しもう。</div></div></div>
+<div class="sub">月予算：1人5,000円（週800円＋月3,000円＋ガチャ1,000円＋予備200円）</div></div>
+<div class="card wide"><div class="row"><h2 class="section-title">📅 30日カレンダー</h2><button class="btn ghost" id="reset">リセット</button></div><div id="calendar" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px"></div><p class="small">日付のマスを押すと、その日の記録に切り替わります。</p></div>
+<div class="card wide"><h2 class="section-title">📜 ルール</h2><div class="sub">① 5分達成で個人＋1pt、チーム＋1pt。② 3日連続で個人＋1pt、7日連続で個人＋3pt。③ 2人とも同じ日に達成するとチーム＋2pt。④ 休んだら連続記録だけリセット。累計ポイントとバッジは残ります。⑤ 体調が悪い日は休んでOK。無理せず翌日から再開！</div></div>
+<div class="card wide"><h2 class="section-title">⚙️ 同期設定</h2><div class="sub">公開アプリとして2人の記録を同期するには、管理者がFirebaseプロジェクトを作成して設定値を入力する必要があります。手順は同梱のREADMEをご確認ください。</div></div>
+</section>
+<footer class="small">5分筋トレクエスト · 友達と一緒に続けるためのWebアプリ</footer>
+</main>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCz4oppk6yuoC9ujA3cFJRU9o5c-MNpr9o",
+  authDomain: "my-training-52b74.firebaseapp.com",
+  databaseURL: "https://my-training-52b74-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "my-training-52b74",
+  appId: "1:229911471909:web:07698680ae8bc101d81ccc"
+};
+const configured = !Object.values(firebaseConfig).some(v => v.includes("REPLACE_WITH"));
+const KEY='fiveMinuteQuest_v2';
+const blank=()=>({start:new Date().toISOString().slice(0,10),names:['',''],days:Array.from({length:30},()=>[false,false]),prizes:[]});
+let data;try{data=JSON.parse(localStorage.getItem(KEY))||blank()}catch{data=blank()}
+let selected=0, db=null, roomId=new URLSearchParams(location.search).get('room'), remoteReady=false, writeTimer=null;
+if(!roomId){roomId=crypto.randomUUID().replaceAll('-','').slice(0,20);const u=new URL(location.href);u.searchParams.set('room',roomId);history.replaceState({},'',u);}
+
+const $=id=>document.getElementById(id);
+function setStatus(message,kind=''){ $('syncStatus').textContent=message;$('syncStatus').className='status '+kind; }
+function updateShare(){const url=new URL(location.href);url.searchParams.set('room',roomId);$('shareUrl').textContent=url.href;$('roomText').textContent='ルームID：'+roomId+'。このリンクを2人で共有してください。';}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));render();if(db&&remoteReady){clearTimeout(writeTimer);writeTimer=setTimeout(()=>set(ref(db,'rooms/'+roomId+'/state'),data).catch(e=>setStatus('同期エラー','bad')),250);}}
+function consecutive(p,upto){let n=0;for(let i=upto;i>=0;i--){if(data.days[i]?.[p])n++;else break}return n}
+function pts(p){let n=data.days.reduce((s,d)=>s+(d[p]?1:0),0);for(let i=0;i<30;i++){if(data.days[i][p]&&i>=2&&data.days.slice(i-2,i+1).every(d=>d[p]))n++;if(data.days[i][p]&&i>=6&&data.days.slice(i-6,i+1).every(d=>d[p]))n+=3}return n}
+function render(){
+$('name1').value=data.names[0]||'';$('name2').value=data.names[1]||'';
+$('done1').checked=!!data.days[selected]?.[0];$('done2').checked=!!data.days[selected]?.[1];
+$('dayLabel').textContent=(selected+1)+'日目';$('count1').textContent=data.days.filter(d=>d[0]).length;$('count2').textContent=data.days.filter(d=>d[1]).length;
+$('points1').textContent=pts(0)+' pt';$('points2').textContent=pts(1)+' pt';
+const total=data.days.flat().filter(Boolean).length;$('teamCount').textContent=total;$('teamBar').style.width=(total/60*100)+'%';
+$('todayStatus').textContent=data.days[selected].every(Boolean)?'2人ともクリア！🎉':data.days[selected].some(Boolean)?'あと1人でチームボーナス！':'2人でクエストに挑戦しよう';
+const a=data.days.filter(d=>d[0]).length,b=data.days.filter(d=>d[1]).length;
+const badges=[['🌱','はじめの一歩',a+b>=1],['🔥','三日坊主卒業',consecutive(0,selected)>=3||consecutive(1,selected)>=3],['🎖️','継続ビギナー',consecutive(0,selected)>=7||consecutive(1,selected)>=7],['🌷','習慣化の兆し',a>=14&&b>=14],['💎','継続の達人',a>=21&&b>=21],['👑','筋トレマスター',a>=24&&b>=24]];
+$('badges').innerHTML=badges.map(x=>`<div class="row" style="padding:8px 0;border-bottom:1px solid var(--line);opacity:${x[2]?1:.42}"><span>${x[0]} ${x[1]}</span><b>${x[2]?'獲得！':'未獲得'}</b></div>`).join('');
+$('calendar').innerHTML=data.days.map((d,i)=>`<button data-day="${i}" class="btn daybutton ${i===selected?'':'ghost'}">${i+1}<br>${d[0]?'●':'○'}${d[1]?'●':'○'}</button>`).join('');
+$('calendar').querySelectorAll('button').forEach(b=>b.onclick=()=>{selected=+b.dataset.day;render()});
+$('weeklyStatus').textContent=(a>=6&&b>=6)?'🎉 週ご褒美アンロック！':'解放まで：プレイヤー1 '+Math.max(0,6-a)+'日 / プレイヤー2 '+Math.max(0,6-b)+'日';
+$('monthlyStatus').textContent=(a>=24&&b>=24)?'🎉 月間ご褒美アンロック！':'解放まで：プレイヤー1 '+Math.max(0,24-a)+'日 / プレイヤー2 '+Math.max(0,24-b)+'日';
+$('prizeHistory').innerHTML=data.prizes.slice(-5).reverse().map(p=>`<div class="log">Day ${p.day} · ${p.prize}</div>`).join('');
+}
+$('name1').onchange=e=>{data.names[0]=e.target.value;persist()};$('name2').onchange=e=>{data.names[1]=e.target.value;persist()};
+$('done1').onchange=e=>{data.days[selected][0]=e.target.checked;persist()};$('done2').onchange=e=>{data.days[selected][1]=e.target.checked;persist()};
+$('saveDay').onclick=()=>{data.days[selected]=[$('done1').checked,$('done2').checked];persist();$('todayStatus').textContent='記録を保存しました！💜'};
+$('prevDay').onclick=()=>{selected=Math.max(0,selected-1);render()};$('nextDay').onclick=()=>{selected=Math.min(29,selected+1);render()};
+$('gacha').onclick=()=>{if(!data.days[selected].some(Boolean)){$('prize').textContent='まずはどちらかが筋トレを達成してね！';return}const prizes=['好きな飲み物（予算目安200円）','コンビニスイーツ（予算目安300円）','好きな曲を1曲リクエスト（無料）','次の筋トレメニューを決める権利（無料）','お互いを褒めるメッセージ（無料）','次のお出かけ先を選ぶ権利（無料）','カフェドリンク券（予算目安500円）','レア称号を獲得！（無料）'];const p=prizes[Math.floor(Math.random()*prizes.length)];data.prizes.push({day:selected+1,prize:p});persist();$('prize').textContent='🎉 '+p;};
+$('reset').onclick=()=>{if(confirm('この共有ルームの記録をすべてリセットしますか？')){data=blank();selected=0;persist();$('prize').textContent=''}};
+$('copyLink').onclick=async()=>{try{await navigator.clipboard.writeText($('shareUrl').textContent);$('copyLink').textContent='コピーしました！';setTimeout(()=>$('copyLink').textContent='リンクをコピー',1800)}catch{$('prize').textContent='共有リンクを長押ししてコピーしてください。'}};
+$('shareNative').onclick=async()=>{if(navigator.share){try{await navigator.share({title:'5分筋トレクエスト',text:'一緒に30日筋トレしよう！',url:$('shareUrl').textContent})}catch{}}else{$('copyLink').click()}};
+updateShare();render();
+if(!configured){setStatus('Firebase設定が必要','bad');}
+else{
+ try{
+ const app=initializeApp(firebaseConfig);const auth=getAuth(app);db=getDatabase(app);
+ setStatus('接続中');
+ signInAnonymously(auth).catch(e=>setStatus('認証エラー','bad'));
+ onAuthStateChanged(auth,user=>{
+  if(!user)return;
+  const stateRef=ref(db,'rooms/'+roomId+'/state');
+  onValue(stateRef,snap=>{
+   if(snap.exists()){
+    const incoming=snap.val();
+    if(incoming&&Array.isArray(incoming.days)&&incoming.days.length===30){data=incoming;localStorage.setItem(KEY,JSON.stringify(data));remoteReady=true;render();setStatus('同期中','ok');}
+   }else if(!remoteReady){remoteReady=true;set(stateRef,data).then(()=>setStatus('同期中','ok')).catch(()=>setStatus('同期エラー','bad'));}
+  },()=>setStatus('同期エラー','bad'));
+ });
+ }catch(e){setStatus('接続できません','bad')}
+}
+</script>
+</body></html>
